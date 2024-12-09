@@ -18,7 +18,7 @@ Game.registerMod("autogodzamok",{//this string needs to match the ID provided in
 	},
 });
 javascript:( function () {
-	var godzamokInterval = setInterval(setGodzamokInterval, 150);
+	var godzamokInterval = setInterval(setGodzamokInterval, 100);
 	function setGodzamokInterval(){
 		if(Game.hasGod('ruin')){
 			if( (
@@ -46,11 +46,11 @@ javascript:( function () {
 		var buildingList = [2,3,4];
 		if(Game.hasGod('ruin')){
 			for( var theBuilding in buildingList ){
-				var numCurrentBuilding = Game.ObjectsById[buildingList[theBuilding]].amount;
-				if (numCurrentBuilding > 99){
-					Game.ObjectsById[buildingList[theBuilding]].sell(numCurrentBuilding);
+				var numCurrentBuilding = Game.ObjectsById[theBuilding].amount;
+				if (numCurrentBuilding >= 100){
+					Game.ObjectsById[theBuilding].sell(numCurrentBuilding);
 					// rebuy all buildings
-					Game.ObjectsById[buildingList[theBuilding]].buy(numCurrentBuilding);
+					Game.ObjectsById[theBuilding].buy(numCurrentBuilding);
 				}
 			}
 		}
